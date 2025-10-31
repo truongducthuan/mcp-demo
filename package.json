@@ -1,26 +1,28 @@
 {
-  "name": "sell-book",
+  "name": "chatgpt-task-manager-widget",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Task Manager Widget tích hợp ChatGPT với Fractal MCP SDK",
   "type": "module",
-  "bin": {
-    "sell-book": "./build/index.js"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && chmod 755 build/index.js"
+    "build:ui": "fractal-mcp bundle --entrypoint=./src/ui/TaskWidget.tsx --out=./dist/ui",
+    "build:server": "tsc",
+    "build": "npm run build:ui && npm run build:server",
+    "dev": "npm run build && node dist/server/index.js",
+    "start": "node dist/server/index.js"
   },
-  "files": ["build"],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.20.2",
-    "zod": "^3.25.76"
+    "@fractal-mcp/oai-hooks": "latest",
+    "@fractal-mcp/oai-server": "latest",
+    "zod": "^3.22.4",
+    "express": "^4.18.2"
   },
   "devDependencies": {
-    "@types/node": "^24.9.1",
-    "typescript": "^5.9.3"
+    "@fractal-mcp/cli": "latest",
+    "@fractal-mcp/bundle": "latest",
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.45",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3"
   }
 }
